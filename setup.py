@@ -5,7 +5,7 @@ version = '0.1'
 
 setup(name='pleiades.iterate',
       version=version,
-      description="Extensions to plone.app.iterate",
+      description="Subscribers for plone.app.iterate events",
       long_description=open("README.txt").read() + "\n" +
                        open(os.path.join("docs", "HISTORY.txt")).read(),
       # Get more strings from http://www.python.org/pypi?%3Aaction=list_classifiers

@@ -3,5 +3,9 @@
     xmlns:five="http://namespaces.zope.org/five"
     i18n_domain="pleiades.iterate">
 
+    <subscriber
+       for="plone.app.iterate.interfaces.ICheckoutEvent"
+       handler=".place.handleCheckout"
+       />
 
 </configure>

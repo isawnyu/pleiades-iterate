@@ -1,8 +1,8 @@
 Changelog
 =========
 
-0.1 - Unreleased
+0.1 (2011-11-18)
 ----------------
-
-* Initial release
+- Set review state of working copy place contents (names, locations) to match their
+  baseline counterparts.
 
