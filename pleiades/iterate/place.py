@@ -22,9 +22,6 @@ def handleCheckout(event):
     if IPlace.providedBy(context):
         wftool = getToolByName(event.object, "portal_workflow")
         mtool = getToolByName(event.object, "portal_membership")
-    
-        # TODO: implement a new workflow for checked out items to replace
-        # this hack. Also note that checkouts expose 
         sm = getSecurityManager()
         try:
             tmp_user = UnrestrictedUser(
@@ -34,12 +31,16 @@ def handleCheckout(event):
                 '')
             newSecurityManager(None, tmp_user.__of__(event.object.acl_users))
             for oid, ob in event.working_copy.contentItems():
+                # Set review state and ownership to that of the baseline
                 baseline = event.object[oid]
                 baseline_state = wftool.getInfoFor(baseline, 'review_state')
                 if baseline_state in ('pending', 'published'):
                     wftool.doActionFor(ob, action="submit")
                 if baseline_state in ('published'):
                     wftool.doActionFor(ob, action="publish")
+                if baseline.owner_info().get('id') is not None:
+                    ob.changeOwnership(baseline.getOwner())
+
             setSecurityManager(sm)
         except:
             setSecurityManager(sm)

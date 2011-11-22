@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.2 (2011-11-2)
+---------------
+- Set ownership of a working place copy's names and locations to that of the
+  baseline objects.
+
 0.1.1 (2011-11-21)
 ------------------
 - Run checkout subscriber as system user so it can publish.
