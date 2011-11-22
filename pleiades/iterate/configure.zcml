@@ -8,4 +8,9 @@
        handler=".place.handleCheckout"
        />
 
+    <subscriber
+       for="plone.app.iterate.interfaces.ICheckinEvent"
+       handler=".place.handleCheckin"
+       />
+
 </configure>

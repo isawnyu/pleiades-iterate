@@ -1,8 +1,13 @@
 Changelog
 =========
 
-0.2 (2011-11-2)
----------------
+0.3 (2011-11-22)
+----------------
+- Prevent checkins that remove content from the baseline. TODO: notification to
+  users.
+
+0.2 (2011-11-22)
+----------------
 - Set ownership of a working place copy's names and locations to that of the
   baseline objects.
 

@@ -6,6 +6,8 @@ from AccessControl.User import nobody
 from AccessControl.User import UnrestrictedUser as BaseUnrestrictedUser
 from Products.CMFCore.utils import getToolByName
 
+from plone.app.iterate.interfaces import CheckinException
+
 from Products.PleiadesEntity.content.interfaces import IPlace
 
 class UnrestrictedUser(BaseUnrestrictedUser):
@@ -45,6 +47,19 @@ def handleCheckout(event):
         except:
             setSecurityManager(sm)
             raise
+    else:
+        pass
+
+
+def handleCheckin(event):
+    context = event.object # working copy
+    if IPlace.providedBy(context):
+        baseline_keys, baseline_values = zip(*event.baseline.contentItems())
+        try:
+            for key in baseline_keys:
+                assert key in context
+        except AssertionError:
+            raise CheckinException("Items must not be deleted from the baseline. Check the working copy, restore deleted items, or abandon the checkout.")
     else:
         pass
 
