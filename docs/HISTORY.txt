@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.3.1 (2011-11-28)
+------------------
+- Present a helpful error message to the user.
+
 0.3 (2011-11-22)
 ----------------
 - Prevent checkins that remove content from the baseline. TODO: notification to

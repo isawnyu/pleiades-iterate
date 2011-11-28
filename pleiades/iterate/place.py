@@ -55,11 +55,10 @@ def handleCheckin(event):
     context = event.object # working copy
     if IPlace.providedBy(context):
         baseline_keys, baseline_values = zip(*event.baseline.contentItems())
-        try:
-            for key in baseline_keys:
-                assert key in context
-        except AssertionError:
-            raise CheckinException("Items must not be deleted from the baseline. Check the working copy, restore deleted items, or abandon the checkout.")
+        keys, values = zip(*context.contentItems()) or [], []
+        baseline_diff = set(baseline_keys) - set(keys)
+        if baseline_diff:
+            raise CheckinException("Items present in the baseline, %s, were not found in the working copy. A checkin of the working copy would have corrupted the baseline. Review the working copy and restore deleted items or cancel the checkout." % list(baseline_diff))
     else:
         pass
 
