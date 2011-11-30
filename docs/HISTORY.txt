@@ -1,6 +1,10 @@
 Changelog
 =========
 
+0.3.2 (2011-11-29)
+------------------
+- Fix for syntax error that was preventing checkins.
+
 0.3.1 (2011-11-28)
 ------------------
 - Present a helpful error message to the user.
