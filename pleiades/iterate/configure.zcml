@@ -1,16 +1,17 @@
 <configure
     xmlns="http://namespaces.zope.org/zope"
     xmlns:five="http://namespaces.zope.org/five"
+    xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="pleiades.iterate">
 
-    <subscriber
-       for="plone.app.iterate.interfaces.ICheckoutEvent"
-       handler=".place.handleCheckout"
-       />
+    <five:registerPackage package="." />
+    
+    <adapter factory=".copier.PlaceCopier" />
 
-    <subscriber
-       for="plone.app.iterate.interfaces.ICheckinEvent"
-       handler=".place.handleCheckin"
-       />
+    <browser:view
+        for="Products.PleiadesEntity.content.interfaces.IPlace"
+        name="iterate"
+        class=".browser.IterateInfoView"
+        permission="zope2.View" />
 
 </configure>

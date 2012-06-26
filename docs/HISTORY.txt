@@ -1,6 +1,11 @@
 Changelog
 =========
 
+0.4 (Unreleased)
+----------------
+- New copier for Places that does not copy names and location to the working
+  copy.
+
 0.3.2 (2011-11-29)
 ------------------
 - Fix for syntax error that was preventing checkins.
