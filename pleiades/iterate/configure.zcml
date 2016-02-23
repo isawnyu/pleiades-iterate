@@ -4,6 +4,9 @@
     xmlns:browser="http://namespaces.zope.org/browser"
     i18n_domain="pleiades.iterate">
 
+    <include package="Products.PleiadesEntity" />
+    <include package="plone.app.iterate" />
+
     <five:registerPackage package="." />
     
     <adapter factory=".copier.PlaceCopier" />

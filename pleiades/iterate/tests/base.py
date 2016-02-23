@@ -1,15 +1,9 @@
-import os, sys
-import glob
-import unittest
-
-from Testing import ZopeTestCase as ztc
-from Products.Five import zcml
 from Products.Five import fiveconfigure
+from Products.Five import zcml
 from Products.PloneTestCase import PloneTestCase as ptc
 from Products.PloneTestCase.layer import onsetup
+from Testing import ZopeTestCase as ztc
 from zope.component import eventtesting
-import plone.app.iterate
-import Products.PleiadesEntity
 
 ztc.installProduct('ATVocabularyManager')
 ztc.installProduct('Products.ATBackRef')
@@ -18,24 +12,27 @@ ztc.installProduct('Products.OrderableReferenceField')
 ztc.installProduct('pleiades.vocabularies')
 ztc.installProduct('PleiadesEntity')
 
+
 @onsetup
 def setup_pleiades():
     fiveconfigure.debug_mode = True
-    import Products.PleiadesEntity
-    zcml.load_config('configure.zcml', Products.PleiadesEntity)
-    zcml.load_config('configure.zcml', plone.app.iterate)
+    import pleiades.iterate
+    zcml.load_config('configure.zcml', pleiades.iterate)
     fiveconfigure.debug_mode = False
     ztc.installPackage('pleiades.vocabularies')
     ztc.installPackage('plone.app.iterate')
     ztc.installPackage('Products.PleiadesEntity')
-    
+
 setup_pleiades()
 ptc.setupPloneSite(products=['PleiadesEntity'])
 
+
 class PlacesIntegrationTestCase(ptc.PloneTestCase):
+
     def setUp(self):
         super(PlacesIntegrationTestCase, self).setUp()
         eventtesting.setUp()
+
     def afterSetUp(self):
         self.wf = self.portal.portal_workflow
         self.repo = self.portal.portal_repository
@@ -55,4 +52,3 @@ class PlacesIntegrationTestCase(ptc.PloneTestCase):
         self.setRoles(('Reviewer',))
         self.wf.doActionFor(p1, 'publish')
         self.wf.doActionFor(n1, 'publish')
-

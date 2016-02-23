@@ -1,9 +1,5 @@
-
-from unittest import TestCase, TestSuite, makeSuite
-
-from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
-
 from pleiades.iterate.tests.base import PlacesIntegrationTestCase
+from plone.app.iterate.interfaces import ICheckinCheckoutPolicy
 
 
 class IteratePlaceTestCase(PlacesIntegrationTestCase):
@@ -64,8 +60,3 @@ class IteratePlaceTestCase(PlacesIntegrationTestCase):
         p1 = self.places['1']
         wc = ICheckinCheckoutPolicy(p1).checkout(self.places)
         xx = ICheckinCheckoutPolicy(wc).checkout(self.places)
-
-def test_suite():
-    suite = TestSuite()
-    suite.addTest(makeSuite(IteratePlaceTestCase))
-    return suite
