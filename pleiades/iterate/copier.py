@@ -205,8 +205,9 @@ class PlaceCopier(object):
         target_id = result[0]['new_id']
         target = container._getOb(target_id)
 
-        # remove its children
-        target.manage_delObjects(target.keys())
+        # remove its children (ignoring permissions)
+        for k in list(target.keys()):
+            target._delOb(k)
 
         return target
 
