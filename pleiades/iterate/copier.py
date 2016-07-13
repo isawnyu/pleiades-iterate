@@ -207,7 +207,7 @@ class PlaceCopier(object):
 
         # remove its children (ignoring permissions)
         for k in list(target.keys()):
-            target._delOb(k)
+            target._delObject(k)
 
         return target
 
