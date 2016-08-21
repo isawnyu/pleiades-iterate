@@ -91,8 +91,10 @@ class PlaceCopier(object):
         # baseline
 
         # First, copy children of baseline to the working copy
-        clipboard = baseline.manage_cutObjects(baseline.keys())
-        self.context.manage_pasteObjects(clipboard)
+        for key in baseline.keys():
+            sub_ob = baseline[key]
+            baseline._delObject(key, suppress_events=True)
+            self.context._setObject(key, sub_ob, suppress_events=True)
 
         # delete the baseline from the folder to make room for the committed
         # working copy
