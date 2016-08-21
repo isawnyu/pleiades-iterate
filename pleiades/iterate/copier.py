@@ -94,7 +94,8 @@ class PlaceCopier(object):
         for key in baseline.keys():
             sub_ob = baseline[key]
             baseline._delObject(key, suppress_events=True)
-            self.context._setObject(key, sub_ob, suppress_events=True)
+            new_id = self.context._get_id(key)
+            self.context._setObject(new_id, sub_ob, suppress_events=True)
 
         # delete the baseline from the folder to make room for the committed
         # working copy
