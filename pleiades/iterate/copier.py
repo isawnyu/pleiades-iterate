@@ -94,6 +94,7 @@ class PlaceCopier(object):
         for key in baseline.keys():
             sub_ob = baseline[key]
             baseline._delObject(key, suppress_events=True)
+            # use _get_id to handle naming in case of conflicts
             new_id = self.context._get_id(key)
             self.context._setObject(new_id, sub_ob, suppress_events=True)
 
@@ -111,7 +112,7 @@ class PlaceCopier(object):
         self.context._v_is_cp = 0
 
         wc_id = self.context.getId()
-        wc_container.manage_delObjects([wc_id])
+        wc_container._delObject(wc_id)
 
         # move the working copy back to the baseline container
         working_copy = aq_base(self.context)
