@@ -5,7 +5,6 @@ from Products.PloneTestCase.layer import onsetup
 from Testing import ZopeTestCase as ztc
 from zope.component import eventtesting
 
-ztc.installProduct('ATVocabularyManager')
 ztc.installProduct('Products.ATBackRef')
 ztc.installProduct('Products.CompoundField')
 ztc.installProduct('Products.OrderableReferenceField')
